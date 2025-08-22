@@ -22,7 +22,33 @@ namespace CalculadoraForm
 
         private void btnIgual_Click(object sender, EventArgs e)
         {
+            
             //implementar depois
+            try
+            {
+                var resultado = new DataTable().Compute(txbTela.Text, null);
+                txbTela.Text = resultado.ToString();
+                if (txbTela.Text == "∞") 
+                {
+                    btnLimpar.PerformClick();
+                    MessageBox.Show("Expressão inválida!");
+                    
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+
+                btnLimpar.PerformClick();
+                MessageBox.Show("Expressão inválida!");
+
+
+            }
+
+            
+            
+
         }
 
         private void numero_Click(object sender, EventArgs e)
@@ -51,6 +77,15 @@ namespace CalculadoraForm
                 operadorClicado = true;
             }
            
+
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            //limpa a tela:
+            txbTela.Text = "";
+            // Voltar o operador clicando para true:
+            operadorClicado = true;
 
         }
     }
